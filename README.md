@@ -1,7 +1,7 @@
 # spinnydonut
 a donut that spins, in opengl
 
-![Screenshot from 2024-05-14 03-53-30](https://github.com/xyresh/spinnydonut/assets/81033344/2372ee9d-9c57-459f-9215-fb9933c621b4)
+![Screenshot from 2024-05-14 04-28-34](https://github.com/xyresh/spinnydonut/assets/81033344/d3d27522-926f-42e2-8c26-e1a7be0c929a)
 
 
 

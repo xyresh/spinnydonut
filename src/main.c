@@ -70,6 +70,7 @@ void display() {
     glBegin(GL_POINTS);
     for (double t = 0; t < 2 * M_PI; t += 0.01) {
         for (double phi = 0; phi < 2 * M_PI; phi += 0.05) {
+            //we can change the donut scale here
             double x = 0.6 * cos(t) * (2.5 + cos(phi));
             double y = 0.6 * sin(t) * (2.5 + cos(phi));
             double z = 0.6 * sin(phi);
@@ -134,6 +135,7 @@ int main(int argc, char** argv) {
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH); // Enable double buffering
     glutInitWindowSize(800, 600);
     glutCreateWindow("SpinnyDonut!");
+    //background colour for the window
     glClearColor(0.18, 0.18, 0.18, 1.0);
     glutDisplayFunc(display);
     glutReshapeFunc(reshape);

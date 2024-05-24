@@ -13,7 +13,11 @@ you can build a version of this that utilizes Vertex buffer objects (only if har
 `make vbo`
 
 this will automatically check for hardware accelerated renderer, however, if it falsely doesn't detect it you can manually run it with: 
-`./dinutvbo`
+`./donutvbo`
+
+if you want to force it to run without hardware acceleration you can run it as:  
+`./donut s`
+
 
 
 # Explanation

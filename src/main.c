@@ -9,6 +9,10 @@
 #include <GL/glut.h>
 #include <math.h>
 
+#define SCALE 0.6
+
+#define SPEED 0.012
+
 double angleX = 0.0;
 double angleY = 0.0;
 double angleZ = 0.0;
@@ -71,9 +75,9 @@ void display() {
     for (double t = 0; t < 2 * M_PI; t += 0.01) {
         for (double phi = 0; phi < 2 * M_PI; phi += 0.05) {
             //we can change the donut scale here
-            double x = 0.6 * cos(t) * (2.5 + cos(phi));
-            double y = 0.6 * sin(t) * (2.5 + cos(phi));
-            double z = 0.6 * sin(phi);
+            double x = SCALE * cos(t) * (2.5 + cos(phi));
+            double y = SCALE * sin(t) * (2.5 + cos(phi));
+            double z = SCALE * sin(phi);
 
             // Apply rotations
             double tempX = x * cos(angleY) - z * sin(angleY);
@@ -122,9 +126,9 @@ void idle() {
 
     // Update rotation angles and trigger redraw,
     // change these values to control speed
-    angleX += 0.012;
-    angleY += 0.012;
-    angleZ += 0.012;
+    angleX += SPEED;
+    angleY += SPEED;
+    angleZ += SPEED;
     glutPostRedisplay();
 }
 

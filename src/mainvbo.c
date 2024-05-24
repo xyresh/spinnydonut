@@ -12,6 +12,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+//scale of the donut in createvertices()
+#define SCALE 0.7
+//rotation speed
+#define SPEED 0.9
+
 // Global variables for VBO
 GLuint vbo;
 GLfloat *vertices;
@@ -91,9 +96,9 @@ void createVertices() {
     int idx = 0;
     for (double t = 0; t < 2 * M_PI; t += 0.01) {
         for (double phi = 0; phi < 2 * M_PI; phi += 0.05) {
-            double x = 0.6 * cos(t) * (2.5 + cos(phi));
-            double y = 0.6 * sin(t) * (2.5 + cos(phi));
-            double z = 0.6 * sin(phi);
+            double x = SCALE * cos(t) * (2.5 + cos(phi));
+            double y = SCALE * sin(t) * (2.5 + cos(phi));
+            double z = SCALE * sin(phi);
             vertices[idx++] = x;
             vertices[idx++] = y;
             vertices[idx++] = z;
@@ -158,9 +163,9 @@ void idle() {
 
     // Update rotation angles and trigger redraw,
     // change these values to control speed
-    angleX += 0.90;
-    angleY += 0.90;
-    angleZ += 0.90;
+    angleX += SPEED;
+    angleY += SPEED;
+    angleZ += SPEED;
     glutPostRedisplay();
 }
 

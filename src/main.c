@@ -157,9 +157,19 @@ int checkHardwareAcceleration() {
 
 //driver code
 int main(int argc, char** argv) {
+    int hw_acc;
+
+    //checking for manual software renderer
+    if(argc>1 && *argv[1]=='s'){
+        printf("\nmanually running software renderer\n");
+        hw_acc=0;
+    }else{
+        hw_acc = checkHardwareAcceleration();
+
+    }
 
     //run donutvbo if hardware acceleration is available
-    if(checkHardwareAcceleration()){
+    if(hw_acc){
         pid_t pid = fork();
         
         if (pid == -1) {

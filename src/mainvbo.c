@@ -15,7 +15,7 @@
 //scale of the donut in createvertices()
 #define SCALE 0.7
 //rotation speed
-#define SPEED 0.9
+#define SPEED 2
 
 // Global variables for VBO
 GLuint vbo;
@@ -175,6 +175,9 @@ void idle() {
 //driver code
 int main(int argc, char** argv) {
     glutInit(&argc, argv);
+
+
+    printf("\nRUNNING HW ACCELERATED\n");
 
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH); // Enable double buffering
     glutInitWindowSize(800, 600);

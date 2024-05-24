@@ -169,7 +169,7 @@ int main(int argc, char** argv) {
     }
 
     //run donutvbo if hardware acceleration is available
-    if(hw_acc){
+    if(!hw_acc){
         pid_t pid = fork();
         
         if (pid == -1) {
@@ -178,7 +178,7 @@ int main(int argc, char** argv) {
             exit(EXIT_FAILURE);
         } else if (pid == 0) {
             // Child process
-            execl("./mainvbo", "./mainvbo", (char *)NULL);
+            execl("./donutvbo", "./donutvbo", (char *)NULL);
             // If execl returns, there was an error
             perror("execl");
             exit(EXIT_FAILURE);

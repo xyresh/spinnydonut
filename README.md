@@ -8,6 +8,9 @@ a donut that spins, in opengl
 depends on glut: 
 https://github.com/freeglut/freeglut
 
+you can build a version of this that utilizes Vertex buffer objects, by simply running: 
+`make vbo`
+
 # Explanation
 
 * **Mathematical Representation:**  
@@ -47,3 +50,7 @@ https://github.com/freeglut/freeglut
    The `glClear()` function clears the color and depth buffers.  
    We draw the points of the donut using `glBegin(GL_POINTS)` and `glVertex3f(x, y, z)`.  
    Finally, we swap the buffers for smooth animation using `glutSwapBuffers()`.  
+
+* **As of now, it offers, vbo rendering**
+  we can utilize vertex buffer object rendering if hardware acceleration is available,
+  which is implemented in the mainvbo.c file

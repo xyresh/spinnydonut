@@ -9,7 +9,12 @@ depends on glut:
 https://github.com/freeglut/freeglut
 
 you can build a version of this that utilizes Vertex buffer objects (only if hardware acceleration is available) , by simply running: 
+
 `make vbo`
+
+this will automatically check for hardware accelerated renderer, however, if it falsely doesn't detect it you can manually run it with: 
+`./dinutvbo`
+
 
 # Explanation
 

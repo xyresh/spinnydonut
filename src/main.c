@@ -8,6 +8,12 @@
 */
 #include <GL/glut.h>
 #include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <string.h>
 
 #define SCALE 0.6
 
@@ -132,9 +138,53 @@ void idle() {
     glutPostRedisplay();
 }
 
+//function to check if there is hardware acceleration available
+int checkHardwareAcceleration() {
+    const char* vendor = (const char*)glGetString(GL_VENDOR);
+    const char* renderer = (const char*)glGetString(GL_RENDERER);
+    printf("OpenGL Vendor: %s\n", vendor ? vendor : "Unknown");
+    printf("OpenGL Renderer: %s\n", renderer ? renderer : "Unknown");
+
+    if (renderer && (strstr(renderer, "Microsoft") != NULL || strstr(renderer, "Software") != NULL)) {
+        printf("Software rendering detected.\n");
+        return 1;
+    } else {
+        printf("Hardware acceleration detected.\n");
+        return 0;
+    }
+}
+
 
 //driver code
 int main(int argc, char** argv) {
+
+    //run donutvbo if hardware acceleration is available
+    if(checkHardwareAcceleration()){
+        pid_t pid = fork();
+        
+        if (pid == -1) {
+            // Error forking
+            perror("fork");
+            exit(EXIT_FAILURE);
+        } else if (pid == 0) {
+            // Child process
+            execl("./mainvbo", "./mainvbo", (char *)NULL);
+            // If execl returns, there was an error
+            perror("execl");
+            exit(EXIT_FAILURE);
+        } else {
+            // Parent process
+            int status;
+            waitpid(pid, &status, 0); // Wait for the child process to complete
+            if (WIFEXITED(status)) {
+                printf("mainvbo exited with status %d\n", WEXITSTATUS(status));
+            } else {
+                printf("mainvbo did not exit successfully\n");
+            }
+        }
+        return 0;
+    }
+
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH); // Enable double buffering
     glutInitWindowSize(800, 600);

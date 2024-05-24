@@ -8,7 +8,7 @@ a donut that spins, in opengl
 depends on glut: 
 https://github.com/freeglut/freeglut
 
-you can build a version of this that utilizes Vertex buffer objects, by simply running: 
+you can build a version of this that utilizes Vertex buffer objects (only if hardware acceleration is available) , by simply running: 
 `make vbo`
 
 # Explanation

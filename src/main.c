@@ -161,7 +161,7 @@ int main(int argc, char** argv) {
 
     //checking for manual software renderer
     if(argc>1 && *argv[1]=='s'){
-        printf("\nmanually running software renderer\n");
+        printf("\nManually running software renderer\n");
         hw_acc=0;
     }else{
         hw_acc = checkHardwareAcceleration();
@@ -174,13 +174,13 @@ int main(int argc, char** argv) {
         
         if (pid == -1) {
             // Error forking
-            perror("fork");
+            perror("fork error");
             exit(EXIT_FAILURE);
         } else if (pid == 0) {
             // Child process
             execl("./donutvbo", "./donutvbo", (char *)NULL);
             // If execl returns, there was an error
-            perror("execl");
+            perror("execl error");
             exit(EXIT_FAILURE);
         } else {
             // Parent process
@@ -189,7 +189,7 @@ int main(int argc, char** argv) {
             if (WIFEXITED(status)) {
                 printf("mainvbo exited with status %d\n", WEXITSTATUS(status));
             } else {
-                printf("mainvbo did not exit successfully\n");
+                printf("donutvbo did not exit successfully\n");
             }
         }
         return 0;
